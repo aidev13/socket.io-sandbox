@@ -1,5 +1,5 @@
 /*
-you cannot run the sandbox without starting node server first
+you cannot run the sandbox without starting the node server first
 */
 
 import express from 'express';
@@ -19,14 +19,13 @@ const playerName = {
    firstName : 'David'
 }
 
-
 app.get('/', (req, res) => {
   res.sendFile(join(__dirname, 'index.html'));
 });
 
 io.on('connection', (socket) => {
    socket.on('chat message', (msg) => {
-     io.emit('chat message', msg);
+     io.emit('chat message', `${playerName.firstName} says ${msg}`);
    });
  });
 
